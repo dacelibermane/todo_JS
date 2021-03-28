@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Swanky+and+Moo+Moo&display=swap');
+
+$basic-font: 'Montserrat', sans-serif;
+$special-font: 'Swanky and Moo Moo', cursive;
+
+$colors: (
+  primary-color: rgb(101, 223, 201),
+  primary-dark: darken(rgb(101, 223, 201), 40%),
+  primary-darkest: darken(rgb(101, 223, 201), 50%),
+  primary-light: lighten(rgb(101, 223, 201), 5%),
+  background-linear-primary: linear-gradient(to right top, #65dfc9, #6cebb0),
+  background-linear: linear-gradient(
+    to right bottom,
+   rgba(255, 255, 255, 0.13),
+   rgba(255, 255, 255, 0.3))
+);
+
+@function color($color-name){
+  @return map-get($colors, $color-name)
+}
+
+@mixin flex($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 62.5%;
+  font-family: $basic-font;
+}
+
+.container{
+  min-height: 100vh;
+  background: color(background-linear-primary);
+  @include flex(center, center);
+}
+
+.glass{
+  background: white;
+  min-height: 80vh;
+  width: 60%;
+  background: color(background-linear);
+  border-radius: 2rem;
+  backdrop-filter: blur(8px);
+  z-index: 5;
+}
+
+.title{
+  @include flex(center, center);
+  margin: 2rem;
+
+  h2{
+    font-family: $special-font;
+    font-size: 8rem;
+    font-weight: 800;
+    text-align: center;
+    color: color(primary-dark);
+  }
+}
+
+.input{
+ @include flex(center, center);
+ margin-bottom: 2rem;
+}
+
+.todo-input,
+.todo-btn{
+  padding: 0.5rem;
+  font-size: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    to right bottom,
+   rgba(255, 255, 255, 0.5)),
+   rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.add-btn{
+  color: color(primary-dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover{
+    color: color(primary-light);
+  }
+}
+
+.todo-input{
+  &::placeholder{
+    color: color(primary-dark);
+  }
+}
+
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+}
+
+.select{
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+  @include flex(center, center);
+  
+
+  select{
+    color: color(primary-dark);
+    width: 12rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(
+    to right bottom,
+   rgba(255, 255, 255, 0.5)),
+   rgba(255, 255, 255, 0.1);
+  }
+
+  &::after{
+    content: "\25BC";
+    
+    position: absolute;
+    background: color(primary-dark);
+    color: white;
+    top: 0;
+    right: 7.5rem;
+    padding: 0.7rem;
+    border-radius: 0 0.5rem;
+    pointer-events: none;
+  }
+}
+
+.todo-container{
+  @include flex(center, center);
+  // background: color(background-linear-primary);
+  border-radius: 2rem;
+  // width: 70%;
+  // margin: 0 auto;
+}
+
+.todo-item{
+  padding: 0.5rem;
+}
+
+.todo-list{
+  min-width: 50%;
+  list-style: none;
+}
+
+.todo{
+  margin: 0.5rem;
+  background: white;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  @include flex(space-between, center);
+  transition: all 0.5s ease;
+
+  li{
+    flex:1;
+  }
+}
+
+.complete-btn,
+.delete-btn{
+  background: color(primary-dark);
+  color: white;
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.complete-btn{
+  background: color(primary-darkest);
+}
+
+.fa-trash-alt,
+.fa-check-circle{
+  pointer-events: none;
+}
+
+.completed{
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.fall{
+  transform: translateY(8rem) rotateZ(10deg);
+  opacity: 0;
+}
+
+
+
+//Background circles and rectangle
+.circle1,
+.circle2{
+  width: 16rem;
+  height: 16rem;
+  background: white;
+  background: linear-gradient(
+    to right bottom,
+   rgba(255, 255, 255, 0.5)),
+   rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.circle1{
+  top: 3%;
+  right: 17%;
+}
+
+.circle2{
+  bottom: 3%;
+  left: 17%;
+}
+
+.rectangle{
+  width: 35rem;
+  height: 7rem;
+  border-radius: 1rem;
+  top: 17%;
+  left: 39%;
+  position: absolute;
+  background: linear-gradient(
+    to right bottom,
+   rgba(255, 255, 255, 0.5)),
+   rgba(255, 255, 255, 0.1);
+}
+
+
+
+@media screen and (max-width: 1295px){
+
+  .title{
+    h2{
+      font-size: 5rem;
+    }
+  }
+  .circle1{
+    width: 13rem;
+    height: 13rem;
+  }
+
+  .circle2{
+    width: 13rem;
+    height: 13rem;
+  }
+
+  .rectangle{
+   display: none;
+  }
+}
+
